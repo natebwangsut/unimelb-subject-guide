@@ -1,12 +1,9 @@
 var gulp = require("gulp");
 var browserify = require("browserify");
-var source = require("source");
+var source = require('vinyl-source-stream');
 var tsify = require("tsify");
-var path = {
-    pages: [
-        'src/*.html',
-        'src/*.htm'
-    ]
+var paths = {
+    pages: ['src/*.html']
 };
 
 gulp.task("copy-html", function () {
@@ -14,13 +11,13 @@ gulp.task("copy-html", function () {
         .pipe(gulp.dest("dist"));
 });
 
-gulp.task("default", function () {
+gulp.task("default", ["copy-html"], function () {
     return browserify({
         basedir: '.',
         debug: true,
         entries: ['src/main.ts'],
         cache: {},
-        packageCache: {},
+        packageCache: {}
     })
     .plugin(tsify)
     .bundle()

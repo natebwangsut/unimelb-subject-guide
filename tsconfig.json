@@ -1,7 +1,7 @@
 {
     "include": [
-        "src/main.ts",
-        "src/greet.ts"
+        "src/*.ts",
+        "src/*.html"
     ],
     "compilerOptions": {
         "outDir": "./build",
