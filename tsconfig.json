@@ -1,0 +1,14 @@
+{
+    "include": [
+        "src/main.ts",
+        "src/greet.ts"
+    ],
+    "compilerOptions": {
+        "outDir": "./build",
+        "allowJs": true,
+        "target": "es6",
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "noFallthroughCasesInSwitch": false
+    }
+}
