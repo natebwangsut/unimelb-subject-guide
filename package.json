@@ -1,0 +1,37 @@
+{
+  "name": "unimelb-subject-guide",
+  "version": "1.0.0",
+  "description": "Visualising your UniMelb Pathway",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThePooE/unimelb-subject-guide.git"
+  },
+  "author": "@ThePooE <thepooe@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ThePooE/unimelb-subject-guide/issues"
+  },
+  "homepage": "https://github.com/ThePooE/unimelb-subject-guide#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "gulp": "^3.9.1",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-typescript": "^3.1.3",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "http": "0.0.0",
+    "tsify": "^2.0.3",
+    "typescript": "^2.0.10",
+    "typings": "^2.0.0",
+    "url": "^0.11.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  }
+}
