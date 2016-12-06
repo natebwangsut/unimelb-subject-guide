@@ -1,13 +1,24 @@
 "use strict";
-var gulp = require("gulp");
-var browserify = require("browserify");
-var source = require('vinyl-source-stream');
-var watchify = require("watchify");
-var tsify = require("tsify");
-var gutli = require("gulp-util");
-var paths = {
-    pages: ['src/*.html']
-};
+
+////////////////////////////////////////////////////////////////////////////////
+
+// Requirements (Dependency) of the projects
+const gulp = require("gulp"),
+    browserify = require("browserify"),
+    source = require('vinyl-source-stream'),
+    watchify = require("watchify"),
+    tsify = require("tsify"),
+    gutli = require("gulp-util"),
+    paths = {
+        pages: ['src/*.html']
+    };
+
+////////////////////////////////////////////////////////////////////////////////
+
+// Tasks Constants
+const copyHtmlTask = "copy-html";
+
+////////////////////////////////////////////////////////////////////////////////
 
 var watchedBrowserify = watchify(browserify({
     basedir: '.',
@@ -17,10 +28,7 @@ var watchedBrowserify = watchify(browserify({
     packageCache: {}
 }).plugin(tsify));
 
-gulp.task("copy-html", function () {
-    return gulp.src(paths.pages)
-        .pipe(gulp.dest("dist"));
-});
+////////////////////////////////////////////////////////////////////////////////
 
 function bundle() {
     return watchedBrowserify
@@ -29,16 +37,16 @@ function bundle() {
         .pipe(gulp.dest("dist"));
 }
 
-gulp.task("default", ["copy-html"], bundle);
+function copyTask() {
+    return gulp.src(paths.pages)
+        .pipe(gulp.dest("dist"));
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+gulp.task("default", copyTask);
+gulp.task("copy-html", copyTask);
+gulp.task("watch", ["copy-html"], bundle)
+
 watchedBrowserify.on("update", bundle);
 watchedBrowserify.on("log", gutli.log);
-
-/*
-var ts = require("gulp-typescript");
-var tsProject = ts.createProject("tsconfig.json");
-gulp.task("default", function() {
-    return tsProject.src()
-        .pipe(tsProject())
-        .js.pipe(gulp.dest("dist"));
-});
-*/
