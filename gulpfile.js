@@ -3,15 +3,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Requirements (Dependency) of the projects
-const gulp = require("gulp"),
-    browserify = require("browserify"),
+const gulp = require('gulp'),
+    ts = require('gulp-typescript'),
     source = require('vinyl-source-stream'),
-    watchify = require("watchify"),
-    tsify = require("tsify"),
-    gutli = require("gulp-util"),
-    paths = {
-        pages: ['src/*.html']
-    };
+    browserify = require('browserify'),
+    tsify = require('tsify');
+
+// Constants for paths
+const paths = {
+    src: './src',
+    output: './dist'
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+gulp.task('default', function() {
+    return browserify('src/main.ts')
+        .plugin(tsify)
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest(paths.output))
+})
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -20,33 +32,11 @@ const copyHtmlTask = "copy-html";
 
 ////////////////////////////////////////////////////////////////////////////////
 
-var watchedBrowserify = watchify(browserify({
-    basedir: '.',
-    debug: true,
-    entries: ['src/main.ts'],
-    cache: {},
-    packageCache: {}
-}).plugin(tsify));
-
-////////////////////////////////////////////////////////////////////////////////
-
-function bundle() {
-    return watchedBrowserify
-        .bundle()
-        .pipe(source('bundle.js'))
-        .pipe(gulp.dest("dist"));
-}
-
 function copyTask() {
-    return gulp.src(paths.pages)
-        .pipe(gulp.dest("dist"));
+    return gulp.src(paths.src)
+        .pipe(gulp.dest(paths.output));
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
-gulp.task("default", copyTask);
 gulp.task("copy-html", copyTask);
-gulp.task("watch", ["copy-html"], bundle)
-
-watchedBrowserify.on("update", bundle);
-watchedBrowserify.on("log", gutli.log);

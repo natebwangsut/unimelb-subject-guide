@@ -3,12 +3,16 @@
         "src/*.ts",
         "src/*.html"
     ],
+    "compileOnSave": true,
     "compilerOptions": {
         "outDir": "./build",
         "allowJs": true,
         "target": "es6",
         "module": "commonjs",
-        "noImplicitAny": false,
+        "noImplicitAny": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "experimentalDecorators": true,
         "noFallthroughCasesInSwitch": false
     }
 }

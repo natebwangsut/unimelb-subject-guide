@@ -1,14 +1,9 @@
-import * as request from 'request';
-
+"use strict";
+const request = require("request");
 const KEY_WORDS = ['COMP', 'SWEN', 'INFO'];
 const COMP_SUBJECT = ['10001', '10002', '20003', '20007', '30026'];
-
-export interface ISubject {
-    load_subject(year: string, subjectCode: string): string;
-}
-
-export class Subject implements ISubject {
-    public load_subject(year: string, subjectCode: string): string {
+class Subject {
+    load_subject(year, subjectCode) {
         let uri = 'handbook.unimelb.edu.au';
         let directory = '/view/';
         console.log(uri + directory + year + subjectCode);
@@ -18,6 +13,7 @@ export class Subject implements ISubject {
         }).toString();
     }
 }
-
-let subject: Subject = new Subject();
-export default subject;
+exports.Subject = Subject;
+let subject = new Subject();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = subject;

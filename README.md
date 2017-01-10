@@ -5,3 +5,9 @@ Obtaining subject information then try to give out a visualise diagram of how to
 ## LICENSE
 
 MIT LICENSE
+
+## Development Guide
+
+```
+npm install
+```
